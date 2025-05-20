@@ -110,5 +110,3 @@ This project is licensed under the [MIT License](LICENSE).
 - Notification scheduling plugins
 
 ---
-
-> Made with ❤️ by Utkarsh Shukla
