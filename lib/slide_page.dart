@@ -32,11 +32,10 @@ class _SlideState extends State<Slide> {
         Container(
             alignment: const Alignment(0.9, 0.9),
             child: SmoothPageIndicator(
-              effect: const SlideEffect(
-                  activeDotColor: Color.fromARGB(255, 233, 30, 128)),
-              controller: _controller,
-              count: 3,
-            ))
+                effect: const SlideEffect(
+                    activeDotColor: Color.fromARGB(255, 233, 30, 128)),
+                controller: _controller,
+                count: 4))
       ],
     ));
   }

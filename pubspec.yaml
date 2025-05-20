@@ -36,8 +36,10 @@ dependencies:
     sdk: flutter
   flutter_heatmap_calendar: ^1.0.5
   flutter_local_notifications: ^19.1.0
+  flutter_markdown: ^0.7.7
   flutter_slidable: ^4.0.0
   flutter_timezone: ^4.1.0
+  fluttertoast: ^8.2.12
   google_generative_ai: ^0.4.6
   hidden_drawer_menu: ^3.0.1
   hive_flutter: ^1.1.0

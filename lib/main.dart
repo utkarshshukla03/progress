@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:progress/components/notification.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'onboard/onboard.dart';
 import 'slide_page.dart';
 

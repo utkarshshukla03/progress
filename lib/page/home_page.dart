@@ -17,24 +17,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   HabitDatabase db = HabitDatabase();
   final _myBox = Hive.box("Habit_Database");
+  final NotiService _notiService = NotiService();
+
+  bool isSwitched = false;
 
   @override
   void initState() {
-    // if there is no current habit list, then it is the 1st time ever opening the app
-    // then create default data
+    super.initState();
+    _notiService.initNotification();
+
+    // Load toggle state from Hive
+    isSwitched = _myBox.get('notification_toggle', defaultValue: false);
+
     if (_myBox.get("CURRENT_HABIT_LIST") == null) {
       db.createDefaultData();
-    }
-
-    // there already exists data, this is not the first time
-    else {
+    } else {
       db.loadData();
     }
-
-    // update the database
     db.updateDatabase();
-
-    super.initState();
   }
 
   // checkbox was tapped
@@ -118,7 +118,23 @@ class _HomePageState extends State<HomePage> {
     db.updateDatabase();
   }
 
-  bool isSwitched = false;
+  void _onToggleChanged(bool value) {
+    setState(() {
+      isSwitched = value;
+      _myBox.put('notification_toggle', value); // Save toggle state
+    });
+    if (value) {
+      _notiService.scheduleNotification(
+        title: "Progress",
+        body: "Completed your tasks? or again procrastinating hmm?",
+        hour: 18,
+        minute: 0,
+      );
+    } else {
+      _notiService.cancelAllNotifications();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,20 +157,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Switch(
             value: isSwitched,
-            onChanged: (value) {
-              setState(() {
-                isSwitched = value;
-              });
-              if (value) {
-                NotiService().scheduleNotification(
-                  title: "Progress",
-                  body:
-                      "Did you completed your task? or again procastionating ?",
-                  hour: 18,
-                  minute: 0,
-                );
-              }
-            },
+            onChanged: _onToggleChanged,
             activeColor: Colors.white,
           ),
         ],
@@ -169,15 +172,15 @@ class _HomePageState extends State<HomePage> {
         children: [
           // monthly summary heat map
           MonthlySummary(
-            datasets: db.heatMapDataSet,
-            startDate: _myBox.get("START_DATE"),
+            datasets: db.heatMapDataSet ?? {},
+            startDate: _myBox.get("START_DATE") ?? DateTime.now(),
           ),
 
           // list of habits
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: db.todaysHabitList.length,
+            itemCount: db.todaysHabitList?.length ?? 0,
             itemBuilder: (context, index) {
               return HabitTiles(
                 habitName: db.todaysHabitList[index][0],

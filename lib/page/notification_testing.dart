@@ -21,9 +21,9 @@ class NotificationTesting extends StatelessWidget {
             onPressed: () {
               NotiService().scheduleNotification(
                 title: "Progress",
-                body: "Did you completed your task? or again procastionating ?",
+                body: "Completed your task? or again procastionating ?",
                 hour: 18,
-                minute: 0,
+                minute: 15,
               );
             },
             child: const Text("Schedule Notification")),
