@@ -18,7 +18,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
 
-  static const apiKey = "AIzaSyAm3urarsUdeUb1hO2BGUpRnPPnHs9iLMQ";
+  static const apiKey = "your-api-key";
 
   final model = GenerativeModel(
     model: 'gemini-1.5-flash-latest',
