@@ -35,7 +35,7 @@ class _SlideState extends State<Slide> {
                 effect: const SlideEffect(
                     activeDotColor: Color.fromARGB(255, 233, 30, 128)),
                 controller: _controller,
-                count: 4))
+                count: 3))
       ],
     ));
   }
