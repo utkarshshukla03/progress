@@ -37,17 +37,27 @@ dependencies:
   flutter_heatmap_calendar: ^1.0.5
   flutter_local_notifications: ^19.1.0
   flutter_slidable: ^4.0.0
+  flutter_timezone: ^4.1.0
   google_generative_ai: ^0.4.6
+  hidden_drawer_menu: ^3.0.1
   hive_flutter: ^1.1.0
   intl: ^0.20.2
   lottie: ^3.3.1
   shared_preferences: ^2.5.3
   smooth_page_indicator: ^1.2.1
+  timezone: ^0.10.0
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "asset/logo.jpeg"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "asset/logo_foreground.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

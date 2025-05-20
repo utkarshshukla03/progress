@@ -111,6 +111,7 @@ class _NotePageState extends State<NotePage> {
     return Scaffold(
       backgroundColor: Colors.deepPurple[600],
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         shadowColor: Colors.black,
         backgroundColor: Colors.deepPurple[300],
         toolbarHeight: 60,

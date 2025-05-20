@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import '../components/month_summary.dart';
 import '../components/my_fab.dart';
 import '../components/new_habit_box.dart';
+import '../components/notification.dart';
 import '../data/habit_database.dart';
 import 'habit_titles.dart';
 
@@ -117,10 +118,12 @@ class _HomePageState extends State<HomePage> {
     db.updateDatabase();
   }
 
+  bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple[600],
+
       appBar: AppBar(
         automaticallyImplyLeading: false,
         shadowColor: Colors.black,
@@ -135,6 +138,26 @@ class _HomePageState extends State<HomePage> {
               fontWeight: FontWeight.bold),
         ),
         elevation: 5,
+        actions: [
+          Switch(
+            value: isSwitched,
+            onChanged: (value) {
+              setState(() {
+                isSwitched = value;
+              });
+              if (value) {
+                NotiService().scheduleNotification(
+                  title: "Progress",
+                  body:
+                      "Did you completed your task? or again procastionating ?",
+                  hour: 18,
+                  minute: 0,
+                );
+              }
+            },
+            activeColor: Colors.white,
+          ),
+        ],
       ),
 
       floatingActionButton: MyFloatingActionButton(
